@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Three.js codelab step 2</title>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<style type="text/css">
+		body {
+			margin: 0px;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+	<script src="js/three.min.js"></script>
+	<script src="js/ColladaLoader.js"></script>
+	<script>
+		var camera, scene, renderer;
+		var geometry, material, mesh;
+
+		var car;
+
+		var loader = new THREE.ColladaLoader();
+		loader.options.convertUpAxis = true;
+		loader.load('./car.dae', function(collada) {
+
+			car = collada.scene;
+
+			car.scale.x = car.scale.y = car.scale.z = 1;
+			car.updateMatrix();
+
+			init();
+			animate();
+		});
+
+		function init() {
+			camera = new THREE.PerspectiveCamera(45, window.innerWidth
+					/ window.innerHeight, 1, 10000);
+			camera.position = new THREE.Vector3(0, 1000, 1000);
+			camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+			scene = new THREE.Scene();
+			scene.add(car);
+
+			pointLight = new THREE.PointLight( 0xffffff );
+			pointLight.position = new THREE.Vector3(0, 1000, 0);
+			scene.add( pointLight );
+
+			renderer = new THREE.WebGLRenderer();
+			renderer.setSize(window.innerWidth, window.innerHeight);
+
+			document.body.appendChild(renderer.domElement);
+		}
+
+		function animate() {
+			requestAnimationFrame(animate);
+			car.rotation.y += 0.02;
+			renderer.render(scene, camera);
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Three.js codelab step 3</title>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<style type="text/css">
+		body {
+			margin: 0px;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+	<script src="js/three.min.js"></script>
+	<script src="js/ColladaLoader.js"></script>
+
+	<script>
+		var camera, scene, renderer;
+		var geometry, material, mesh;
+
+		var car, skin;
+
+		var loader = new THREE.ColladaLoader();
+		loader.options.convertUpAxis = true;
+		loader.load('./car.dae', function(collada) {
+
+			car = collada.scene;
+			skin = collada.skins[0];
+
+			car.scale.x = car.scale.y = car.scale.z = 1;
+			car.updateMatrix();
+
+			init();
+			animate();
+		});
+
+		function init() {
+			camera = new THREE.PerspectiveCamera(45, window.innerWidth
+					/ window.innerHeight, 1, 100000);
+			camera.position.y = 5000;
+			camera.position.z = -5000;
+			camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+			scene = new THREE.Scene();
+			
+			geometry = new THREE.PlaneGeometry(50000, 50000, 100, 100);
+			material = new THREE.MeshBasicMaterial({
+				color : 0xcccccc,
+				wireframe : true});
+			mesh = new THREE.Mesh(geometry, material);
+			mesh.rotation.x = Math.PI / 2;
+			scene.add(mesh);
+
+			scene.add(car);
+
+			pointLight = new THREE.PointLight(0xffffff);
+			pointLight.position = new THREE.Vector3(0, 10000, 0);
+			scene.add(pointLight);
+
+			renderer = new THREE.WebGLRenderer();
+			renderer.setSize(window.innerWidth, window.innerHeight);
+
+			document.body.appendChild(renderer.domElement);
+		}
+
+		function animate() {
+			requestAnimationFrame(animate);
+
+			if (speed > 0) {
+				if (keyDown[37]) {
+					car.rotation.y += 0.02;
+				}
+				if (keyDown[39]) {
+					car.rotation.y -= 0.02;
+				}
+			}
+			if (keyDown[38]) {
+				if (speed < 100) {
+					speed += 0.2;
+				}
+			} else {
+				speed -= 1;						
+				if (speed < 0) {
+					speed = 0;
+				}
+			}
+			
+			car.position.x += speed * Math.sin(car.rotation.y);
+			car.position.z += speed * Math.cos(car.rotation.y);
+			
+			camera.lookAt(car.position);
+
+			renderer.render(scene, camera);
+		}
+
+		speed = 0;
+		keyDown = new Array();
+		for (i = 0; i < 300; i++) {
+			keyDown[i] = false;
+		}
+
+		document.onkeydown = function(event) {
+			keyDown[event.keyCode] = true;
+		}
+
+		document.onkeyup = function(event) {
+			keyDown[event.keyCode] = false;
+		}
+	</script>
+</body>
+</html>

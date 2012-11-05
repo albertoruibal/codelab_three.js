@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Three.js codelab step 1</title>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<style type="text/css">
+		body {
+			margin: 0px;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+	<script src="js/three.min.js"></script>
+	<script>
+		var camera, scene, renderer;
+		var geometry, material, mesh;
+
+		init();
+		animate();
+
+		function init() {
+			camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
+			camera.position = new THREE.Vector3(0, 0, 1000);
+
+			scene = new THREE.Scene();
+
+			// Create a Geometry
+			geometry = new THREE.CubeGeometry(200, 200, 200);
+			// Create a Material
+			material = new THREE.MeshLambertMaterial({
+				color : 0xffffff,
+			});
+			// Create a Mesh with the Geometry and the Material
+			mesh = new THREE.Mesh(geometry, material);
+			// Add it to the Scene
+			scene.add(mesh);
+			
+			// Create a Point Light 
+			pointLight = new THREE.PointLight( 0xffffff );
+			// Set the point light position 
+			pointLight.position = new THREE.Vector3(1000, 1000, 0);
+			// Add the light to the scene
+			scene.add( pointLight );
+
+			renderer = new THREE.WebGLRenderer();
+			renderer.setSize(window.innerWidth, window.innerHeight);
+
+			document.body.appendChild(renderer.domElement);
+		}
+
+		function animate() {
+			// Ask for the next frame
+			requestAnimationFrame(animate);
+			// Rotate Cube
+			mesh.rotation.x += 0.01;
+			mesh.rotation.y += 0.02;
+			// Render Frame
+			renderer.render(scene, camera);
+		}
+	</script>
+</body>
+</html>
