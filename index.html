@@ -10,10 +10,8 @@
 <meta name="author" content="Alberto Alonso Ruibal" />
 
 <link href="css/impress.css" rel="stylesheet" />
-<link href='http://fonts.googleapis.com/css?family=Michroma'
-	rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400'
-	rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Finger+Paint' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 
 <body class="impress-not-supported">
@@ -34,10 +32,10 @@
 
 		<div id="start" class="step slide" data-x="0" data-y="0" data-z="5000">
 			<h1>WebGL Three.js Codelab</h1>
-			<br /> <img src="intro.jpg"
+			<br /> <img src="img/intro.jpg"
 				style="display: block; margin-left: auto; margin-right: auto;">
 			<br>
-			<span class="footnote">DevFest BCN, November 2012</span>
+			<span class="footnote">DevFest-X BCN, November 2012</span>
 		</div>
 
 		<div class="step slide" data-x="1000" data-y="0" data-z="4000" data-rotate="10" data-scale="1">
@@ -68,7 +66,7 @@
 
 		<div class="step slide" data-x="3000" data-y="0" data-z="2000" data-rotate="10">
 			<h1>Three.js</h1>
-			<p>Lightweight library that provides a object model with</p>
+			<p>Lightweight library that provides a object model with:</p>
 			<ul>
 				<li>Scene</li>
 				<li>Geometry</li>
@@ -82,8 +80,9 @@
 
 		<div class="step slide" data-x="4000" data-y="0" data-z="1000" data-rotate="-10">
 			<h1>About Three.js</h1>
+			<img src="img/cabello.png" style="float: right">
+			By Ricardo Cabello (@mrdoob)
 			<ul>
-				<li>By Ricardo Cabello (@mrdoob)</li>
 				<li><a href="https://plus.google.com/104300307601542851567/posts">Google Plus page</a></li>
 				<li>Three.js in GitHub <a href="https://github.com/mrdoob/three.js/">https://github.com/mrdoob/three.js/</a></li>
 			</ul>
@@ -93,11 +92,10 @@
 			<h1>Using Three.js</h1>
 			<ul>
 			</ul>
-			We can use the inline code editor
-			<ul>
-				<li><a href="http://mrdoob.com/projects/code-editor/">http://mrdoob.com/projects/code-editor/</a></li>
-			</ul>
-			Download three.min.js from <a href="https://github.com/mrdoob/three.js/build/">https://github.com/mrdoob/three.js/build/</a> and create an empty page. 
+			Inline code editor<br>
+			<a href="http://mrdoob.com/projects/code-editor/">http://mrdoob.com/projects/code-editor/</a></li>
+			<br>
+			Download three.min.js from <a href="https://github.com/mrdoob/three.js/build/">https://github.com/mrdoob/three.js/build/</a> and create an empty page			
 		</div>
 
 		<div class="step slide" data-x="1000" data-y="1000" data-z="4000" data-rotate="10" data-scale="1"">
@@ -168,31 +166,35 @@ function animate() {
 }</code></pre>
 		</div>
 
-		<div class="step slide" data-x="6000" data-y="1000" data-z="-1000" data-rotate="0" data-scale="1"">
+		<div class="step slide" data-x="10000" data-y="1000" data-z="10000" data-scale="1"">
 			<h1>A Basic WebGL Scene</h1>
 			<iframe src="step1.html" width="800" height="500"></iframe>
 		</div>
 		
 		<div class="step slide" data-x="0" data-y="2000" data-z="5000" data-rotate="0" data-scale="1"">
 			<h1>Loading models</h1>
-			Download
+			Download from Three.js GitHub:
 			<ul>
 				<li>examples/js/loaders/ColladaLoader.js</li>
 			</ul>
 			place it in js/ and load it:
 <pre><code>&lt;script src="js/ColladaLoader.js"&gt;&lt;/script&gt;</code></pre>
+<br>
+			To test model load in local you will need to start Chrome with:<br><b>chrome --allow-file-access-from-files</b>
 		</div>
 
 		<div class="step slide" data-x="1000" data-y="2000" data-z="4000" data-rotate="10" data-scale="1"">
-			<h1>Export a Model with Sketch Up</h1>
+			<h1>Export a Model with SketchUp</h1>
+			<center><img src="img/sketchup.png"></center>
 			<ul>
 				<li>We will use the collada format (.dae)</li>
-				<li>Groups!!!</li>
+				<li>Be careful with groups</li>
 			</ul>
 		</div>
 		
 		<div class="step slide" data-x="2000" data-y="2000" data-z="3000" data-rotate="-10" data-scale="1"">
 			<h1>Load the model</h1>
+			Using the ColladaLoader
 			<pre><code>var loader = new THREE.ColladaLoader();
 loader.options.convertUpAxis = true;
 loader.load('./car.dae', function(collada) {
@@ -205,7 +207,7 @@ loader.load('./car.dae', function(collada) {
 
 		<div class="step slide" data-x="3000" data-y="2000" data-z="2000" data-rotate="10" data-scale="1"">
 			<h1>Camera</h1>
-			Make the camera look at the car:
+			Make the camera look at (0,0,0):
 <pre><code>camera = new THREE.PerspectiveCamera(45,
 	window.innerWidth / window.innerHeight, 1, 10000);
 camera.position = new THREE.Vector3(0, 1000, 1000);
@@ -214,6 +216,7 @@ camera.lookAt(new THREE.Vector3(0, 0, 0));</code></pre>
 		
 		<div class="step slide" data-x="4000" data-y="2000" data-z="1000" data-rotate="-10" data-scale="1"">
 			<h1>Animation</h1>
+			We will rotate the car in each frame
 <pre><code>function animate() {
 	requestAnimationFrame(animate);
 	car.rotation.y += 0.02;
@@ -221,7 +224,7 @@ camera.lookAt(new THREE.Vector3(0, 0, 0));</code></pre>
 }</code></pre>
 		</div>
 		
-		<div class="step slide" data-x="5000" data-y="2000" data-z="0" data-rotate="0" data-scale="1"">
+		<div class="step slide" data-x="10000" data-y="2000" data-z="10000" data-scale="1"">
 			<h1>The Loaded Model</h1>
 			<iframe src="step2.html" width="800" height="500"></iframe>
 		</div>
@@ -229,24 +232,87 @@ camera.lookAt(new THREE.Vector3(0, 0, 0));</code></pre>
 		<div class="step slide" data-x="0" data-y="3000" data-z="5000" data-rotate="0" data-scale="1"">
 			<h1>A Basic Game Scenery</h1>
 			
-			Setup keyboard control
+			Setup keyboard control:
+			
+<pre><code>keyDown = new Array();
+for (i = 0; i < 300; i++) keyDown[i] = false;
+document.onkeydown = function(event) {
+	keyDown[event.keyCode] = true;
+}
+document.onkeyup = function(event) {
+	keyDown[event.keyCode] = false;
+}</code></pre>
 		</div>
 
-		<div class="step slide" data-x="5000" data-y="3000" data-z="0" data-rotate="0" data-scale="1"">
+		<div class="step slide" data-x="1000" data-y="3000" data-z="4000" data-rotate="10" data-scale="1"">
+			<h1>Accelerate and brake</h1>
+			We will add this code in the animate() loop: 
+<pre><code>if (keyDown[38]) { // if Up is pressed
+	if (speed < 100) speed += 0.5;
+} else {
+	speed -= 1;						
+	if (speed < 0) speed = 0;
+}</code></pre>
+		</div>
+
+		<div class="step slide" data-x="2000" data-y="3000" data-z="3000" data-rotate="0" data-scale="1"">
+			<h1>Rotate and move the car</h1>
+			Rotate on left/right press:
+<pre><code>if (speed > 0) {
+	if (keyDown[37]) car.rotation.y += 0.02;
+	if (keyDown[39]) car.rotation.y -= 0.02;
+}</code></pre>
+			And move the car:
+<pre><code>car.position.x += speed * Math.sin(car.rotation.y);
+car.position.z += speed * Math.cos(car.rotation.y);</code></pre>
+		</div>
+
+		<div class="step slide" data-x="3000" data-y="3000" data-z="2000" data-rotate="-10" data-scale="1"">
+			<h1>And more...</h1>
+			Camera looking at the car:
+<pre><code>camera.lookAt(car.position);</code></pre>
+		</div>
+
+		<div class="step slide" data-x="4000" data-y="3000" data-z="1000" data-rotate="10" data-scale="1"">
+			<h1>Create a Plane</h1>
+			As a reference for the car movement
+<pre><code>geometry = new THREE.PlaneGeometry(
+	50000, 50000, 100, 100);
+material = new THREE.MeshBasicMaterial({
+	color : 0xcccccc,
+	wireframe : true});
+mesh = new THREE.Mesh(geometry, material);
+mesh.rotation.x = Math.PI / 2;
+scene.add(mesh);</code></pre>
+		</div>
+
+		<div class="step slide" data-x="10000" data-y="3000" data-z="10000" data-scale="1"">
 			<h1>Play!</h1>
 			<iframe src="step3.html" width="800" height="500"></iframe>
 			</ul>
 			Accelerate with &uarr;, steer with &larr; and &rarr;
 		</div>
 
-		<div class="step slide" data-x="3000" data-y="4000" data-rotate="0">
+		<div class="step slide" data-x="0" data-y="4000" data-z="5000" data-rotate="0">
 			<h1>More Three.js Demos</h1>
 
 			<ul>
+				<li>Official examples <a href="http://mrdoob.github.com/three.js/">http://mrdoob.github.com/three.js/</a></li>
+				<li>Mr Doob page: <a href="http://mrdoob.com/">http://mrdoob.com/</a></li>
 				<li>Hello Racer: <a href="http://helloracer.com/webgl/">http://helloracer.com/webgl/</a></li>
 				<li>Trigger Rally: <a href="http://triggerrally.com//">http://triggerrally.com/</a></li>
 				<li>HexGL: <a href="http://hexgl.bkcore.com/">http://hexgl.bkcore.com/</a></li>
 				<li>Nissan Juke: <a href="http://pierrelepers.com/lab/jthree/">http://pierrelepers.com/lab/jthree/</a></li>
+			</ul>
+		</div>
+		
+		<div class="step slide" data-x="1000" data-y="4000" data-z="4000" data-rotate="10">
+			<h1>And More Three.js Resources</h1>
+
+			<ul>
+				<li>Official Three.js doc <a href="http://mrdoob.github.com/three.js/docs/52/">http://mrdoob.github.com/three.js/docs/52/</a></li>
+				<li>Basics of Three.js (Ilmari Heikkinen) <a href="http://fhtr.org/BasicsOfThreeJS/">http://fhtr.org/BasicsOfThreeJS/</a></li>
+				<li>Intro at AeroTwist by Paul Lewis <a href="http://www.aerotwist.com/tutorials/getting-started-with-three-js/">http://www.aerotwist.com/tutorials/getting-started-with-three-js/</a></li>
 			</ul>
 		</div>
 
