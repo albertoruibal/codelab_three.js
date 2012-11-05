@@ -1,15 +1,11 @@
-Codelab
+WebGL Codelab with Three.js
+===========================
 
-1) Download build/three.min.js from https://github.com/mrdoob/three.js/ and place it in /js
-2) Create step1.html file. import library, create basic scene with rotating cube and camera
-3) Get model in Google Sketch Up from Galería 3D, export to dae, GROUPS!
-4) Download examples/js/loaders/ColladaLoader.js place it in js/
-5) Create step2.html, import ColladaLoader.js, load dae file
-6) Add light
-7) Play with camera
-8) Open chrome with --allow-file-access-from-files
-9) Create step3.html, add plane
-10) Key control
+Here you have the slides and source code for the WebGL Codelab at the Google Devfest-X BCN 2012
+
+Codelab description:
+
+Bring your laptops to this codelab, in which we will introduce WebGL using the fantastic Three.js library by Ricardo Cabello. We will begin learning the basic usage of the library building scenes with geometric figures and lights. Then, we will export 3D models from Google Sketch Up to be shown in the web and finally you will be able to create a basic videogame controlling a 3D car. Ricardo Cabello will give us support with the Codelab and he will answer all your questions.
 
 
 
