@@ -68,23 +68,15 @@
 		function animate() {
 			requestAnimationFrame(animate);
 
-			if (speed > 0) {
-				if (keyDown[37]) {
-					car.rotation.y += 0.02;
-				}
-				if (keyDown[39]) {
-					car.rotation.y -= 0.02;
-				}
-			}
 			if (keyDown[38]) {
-				if (speed < 100) {
-					speed += 0.2;
-				}
+				if (speed < 100) speed += 0.5;
 			} else {
 				speed -= 1;						
-				if (speed < 0) {
-					speed = 0;
-				}
+				if (speed < 0) speed = 0;
+			}
+			if (speed > 0) {
+				if (keyDown[37]) car.rotation.y += 0.02;
+				if (keyDown[39]) car.rotation.y -= 0.02;
 			}
 			
 			car.position.x += speed * Math.sin(car.rotation.y);
