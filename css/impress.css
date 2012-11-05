@@ -83,7 +83,7 @@ table {
     want to leave anybody behind.
 */
 body {
-	font-family: 'Ubuntu', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	min-height: 740px;
     
     background: rgb(215, 215, 215);
@@ -247,10 +247,10 @@ q strong {
 
 
 h1 {
-    font-family: 'Michroma', sans-serif;
-    color: #ffaa33;
-    font-size: 40px;
-    margin-bottom: 10px;
+    font-family: 'Finger Paint', sans-serif;
+    color: #c10000;
+    font-size: 50px;
+    text-shadow: black 0.05em 0.05em 0.05em;
     -webkit-transform: translateZ(50px);
     -moz-transform:    translateZ(50px);
     -ms-transform:     translateZ(50px);
