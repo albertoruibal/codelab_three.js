@@ -200,7 +200,7 @@
     var defaults = {
         width: 1024,
         height: 768,
-        maxScale: 4,
+        maxScale: 1,
         minScale: 0,
         
         perspective: 1000,

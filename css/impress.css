@@ -83,7 +83,7 @@ table {
     want to leave anybody behind.
 */
 body {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Ubuntu', sans-serif;
 	min-height: 740px;
     
     background: rgb(215, 215, 215);
@@ -459,3 +459,8 @@ pre {
     Thanks for reading. I hope you enjoyed it at least as much as I enjoyed writing it
     for you.
 */
+code {
+	font-family: Droid Sans Mono;
+    font-size: 27px;
+    line-height: 1.5;
+}
