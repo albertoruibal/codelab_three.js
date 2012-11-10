@@ -87,7 +87,7 @@
 			<ul>
 				<li><a href="https://twitter.com/mrdoob">Twitter (@mrdoob)</a></li>
 				<li><a href="https://plus.google.com/104300307601542851567/posts">Google Plus page</a></li>
-				<li>Three.js in GitHub <a href="https://github.com/mrdoob/three.js/">https://github.com/mrdoob/three.js/</a></li>
+				<li>Three.js in GitHub: <a href="https://github.com/mrdoob/three.js/">github.com/mrdoob/three.js/</a></li>
 			</ul>
 		</div>
 		
@@ -95,19 +95,22 @@
 			<h1>Three.js Demos</h1>
 
 			<ul>
-				<li>Official examples <a href="http://mrdoob.github.com/three.js/">http://mrdoob.github.com/three.js/</a></li>
-				<li>Mr Doob page: <a href="http://mrdoob.com/">http://mrdoob.com/</a></li>
-				<li>Hello Racer: <a href="http://helloracer.com/webgl/">http://helloracer.com/webgl/</a></li>
-				<li>Trigger Rally: <a href="http://triggerrally.com//">http://triggerrally.com/</a></li>
-				<li>HexGL: <a href="http://hexgl.bkcore.com/">http://hexgl.bkcore.com/</a></li>
-				<li>Nissan Juke: <a href="http://pierrelepers.com/lab/jthree/">http://pierrelepers.com/lab/jthree/</a></li>
+				<li>Official examples <a href="http://mrdoob.github.com/three.js/">mrdoob.github.com/three.js/</a></li>
+				<li>Mr Doob page: <a href="http://mrdoob.com/">mrdoob.com/</a></li>
+				<li>Hello Racer: <a href="http://helloracer.com/webgl/">helloracer.com/webgl/</a></li>
+				<li>Trigger Rally: <a href="http://triggerrally.com//">triggerrally.com/</a></li>
+				<li>HexGL: <a href="http://hexgl.bkcore.com/">hexgl.bkcore.com/</a></li>
+				<li>Nissan Juke: <a href="http://pierrelepers.com/lab/jthree/">pierrelepers.com/lab/jthree/</a></li>
 			</ul>
 		</div>
 
 		<div class="step slide" data-x="0" data-y="1000" data-z="5000" data-rotate="0" data-scale="1"">
 			<h1>Using Three.js</h1>
 			<ul>
-				<li>Download three.min.js from <a href="https://github.com/mrdoob/three.js/build/">https://github.com/mrdoob/three.js/build/</a>
+				<li>Download three.min.js from:</li>
+			</ul>
+			<a href="https://github.com/mrdoob/three.js/tree/master/build/">github.com/mrdoob/three.js/tree/master/build/</a>
+			<ul>
 				<li>Create an empty page including the js:</li>
 <pre><code>&lt;script src="js/three.min.js"&gt;&lt;/script&gt;</code></pre>
 				<li>Avoid scrollbars:</li>
@@ -117,10 +120,9 @@
 &lt;/style&gt;
 </code></pre>
 			<li>There is an inline code editor<br>
-			<a href="http://mrdoob.com/projects/code-editor/">http://mrdoob.com/projects/code-editor/</a></li>
 			</ul>
+			<a href="http://mrdoob.com/projects/code-editor/">mrdoob.com/projects/code-editor/</a></li>
 
-			<br>
 		</div>
 
 		<div class="step slide" data-x="1000" data-y="1000" data-z="4000" data-rotate="10" data-scale="1"">
@@ -145,7 +147,7 @@ function init() {
 //...
 camera = new THREE.PerspectiveCamera(45,
  window.innerWidth / window.innerHeight, 1, 10000);
-camera.position = new THREE.Vector3(0, 0, 1000);
+camera.position.set(0, 0, 1000);
 </code></pre>
 
 To render each frame we call:
