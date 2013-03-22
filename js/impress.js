@@ -296,19 +296,22 @@
         // `initStep` initializes given step element by reading data from its
         // data attributes and setting correct styles.
         var initStep = function ( el, idx ) {
+        	var angle = (idx / steps.length) * 2 * Math.PI  + 0.001;
+        	var distance = 1000 / Math.tan( 2 * Math.PI / steps.length); 
+        	
             var data = el.dataset,
                 step = {
                     translate: {
-                        x: toNumber(data.x),
-                        y: toNumber(data.y),
-                        z: toNumber(data.z)
+                        x: toNumber(distance * Math.sin(angle)),
+                        y: toNumber(0),
+                        z: toNumber(distance * Math.cos(angle))
                     },
                     rotate: {
-                        x: toNumber(data.rotateX),
-                        y: toNumber(data.rotateY),
-                        z: toNumber(data.rotateZ || data.rotate)
+                        x: toNumber(0),
+                        y: toNumber(angle * 180 / Math.PI),
+                        z: toNumber(0)
                     },
-                    scale: toNumber(data.scale, 1),
+                    scale: 1,
                     el: el
                 };
             
